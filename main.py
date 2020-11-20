@@ -1,3 +1,4 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, jsonify, request
@@ -5,20 +6,20 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
 def status():
-  return jsonify(status='API IS RUNNING')
+  return jsonify(status="API IS RUNNING")
 
-@app.route('/rates')
+@app.route("/rates")
 def rates():
-  base = request.args.get('base')
-  date = request.args.get('date')
+  base = request.args.get("base")
+  date = request.args.get("date")
 
   if base == None:
-    base = 'ZAR'
+    base = "ZAR"
   
   if date == None:
-    date = datetime.today().strftime('%Y-%m-%d')
+    date = datetime.today().strftime("%Y-%m-%d")
 
   URL = "https://www.x-rates.com/historical/?from=" + base + "&amount=1&date=" + date
 
@@ -37,5 +38,6 @@ def rates():
   
   return jsonify(obj)
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+if __name__ == "__main__":
+  port = int(os.environ.get("PORT", 5000))
+  app.run(debug=True, host="0.0.0.0", port=port)
