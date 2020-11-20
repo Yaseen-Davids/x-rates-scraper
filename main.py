@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 from flask import Flask, jsonify, request
 from datetime import datetime
+from flask_cors import CORS
 
 currencyNames = {
   'Argentine Peso': { 'code': 'ARS' },
@@ -61,6 +62,7 @@ currencyNames = {
 }
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "http://vulcan.test"}})
 
 
 @app.route("/")
