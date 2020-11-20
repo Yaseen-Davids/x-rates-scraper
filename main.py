@@ -62,7 +62,7 @@ currencyNames = {
 }
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/api/*": {"origins": "http://vulcan.test"}})
+cors = CORS(app, resources={r"/*": {"origins": "http://vulcan.test"}})
 
 
 @app.route("/")
