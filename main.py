@@ -115,7 +115,7 @@ def history():
       cols = [ele.text.strip() for ele in cols]
       vals[currencyNames[cols[0]]['code']] = cols[2]
 
-    vals["ZAR"] = "1.00"
+    vals[base] = "1.00"
 
     rates[formatStartDate.strftime("%Y-%m-%d")] = vals
 
@@ -154,7 +154,7 @@ def latestrates():
       rates[currencyNames[cols[0]]['code']] = cols[2]
 
   # insert ZAR
-  rates["ZAR"] = "1.00"
+  rates[base] = "1.00"
   
   obj['base'] = base
   obj['date'] = date
