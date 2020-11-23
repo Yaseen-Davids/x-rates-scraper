@@ -86,6 +86,12 @@ def history():
   if endDate == None:
     endDate = startDate
 
+  if datetime.strptime(startDate, "%Y-%m-%d") > datetime.today():
+    startDate = datetime.today().strftime("%Y-%m-%d")
+
+  if datetime.strptime(endDate, "%Y-%m-%d") > datetime.today():
+    endDate = datetime.today().strftime("%Y-%m-%d")
+
   formatStartDate = datetime.strptime(startDate, "%Y-%m-%d")
   formatEndDate = datetime.strptime(endDate, "%Y-%m-%d")
 
